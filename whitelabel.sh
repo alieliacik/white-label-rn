@@ -1,18 +1,20 @@
 #!/bin/bash
 
 # Check if required parameters are provided
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <AppName> <BundleID>"
-    echo "Example: $0 BinFluncers com.rcbinfluncers"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <AppName> <BundleID> <BrandAssetsFolder>"
+    echo "Example: $0 BinFluncers com.rcbinfluncers CircularMaterials"
     exit 1
 fi
 
 APP_NAME=$1
 BUNDLE_ID=$2
+BRAND_ASSETS_FOLDER=$3
 
 echo "Starting white labeling process..."
 echo "App Name: $APP_NAME"
 echo "Bundle ID: $BUNDLE_ID"
+echo "Brand Assets Folder: $BRAND_ASSETS_FOLDER"
 
 # Run react-native-rename
 echo "Running react-native-rename..."
@@ -24,10 +26,35 @@ cd ios
 pod update
 cd ..
 
+# Copy and update iOS assets
+echo "Updating iOS assets..."
+IOS_APP_PATH="ios/$APP_NAME"
+BRAND_ASSETS_PATH="brandedAppAssets/$BRAND_ASSETS_FOLDER"
+
+# Copy logo
+if [ -f "$BRAND_ASSETS_PATH/Logo.png" ]; then
+    echo "Copying logo..."
+    cp "$BRAND_ASSETS_PATH/Logo.png" "$IOS_APP_PATH/Images.xcassets/AppIcon.appiconset/Logo.png"
+else
+    echo "Warning: Logo.png not found in $BRAND_ASSETS_PATH"
+fi
+
+# Copy splash screen
+if [ -f "$BRAND_ASSETS_PATH/Splash.jpg" ]; then
+    echo "Copying splash screen..."
+    # Convert jpg to png if needed
+    convert "$BRAND_ASSETS_PATH/Splash.jpg" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png"
+    cp "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash 1.png"
+    cp "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash 2.png"
+else
+    echo "Warning: Splash.jpg not found in $BRAND_ASSETS_PATH"
+fi
+
 echo "White labeling process completed!"
-echo "Please provide logo and splash screen images to complete the process."
+echo "Please verify the assets in:"
+echo "- iOS: ios/$APP_NAME/Images.xcassets/"
 echo "Logo should be placed in:"
-echo "- iOS: ios/$APP_NAME/Images.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png"
+echo "- iOS: ios/$APP_NAME/Images.xcassets/AppIcon.appiconset/Logo.png"
 echo "- Android: android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
 echo ""
 echo "Splash screen should be placed in:"
