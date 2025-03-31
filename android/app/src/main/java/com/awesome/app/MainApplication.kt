@@ -1,4 +1,4 @@
-package com.circular.app
+package com.awesome.app
 
 import android.app.Application
 import com.facebook.react.PackageList
