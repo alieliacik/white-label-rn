@@ -40,14 +40,13 @@ else
 fi
 
 # Copy splash screen
-if [ -f "$BRAND_ASSETS_PATH/Splash.jpg" ]; then
+if [ -f "$BRAND_ASSETS_PATH/Splash.png" ]; then
     echo "Copying splash screen..."
-    # Convert jpg to png if needed
-    convert "$BRAND_ASSETS_PATH/Splash.jpg" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png"
-    cp "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash 1.png"
-    cp "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash 2.png"
+    cp "$BRAND_ASSETS_PATH/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash.png"
+    cp "$BRAND_ASSETS_PATH/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash 1.png"
+    cp "$BRAND_ASSETS_PATH/Splash.png" "$IOS_APP_PATH/Images.xcassets/Splash.imageset/Splash 2.png"
 else
-    echo "Warning: Splash.jpg not found in $BRAND_ASSETS_PATH"
+    echo "Warning: Splash.png not found in $BRAND_ASSETS_PATH"
 fi
 
 echo "White labeling process completed!"

@@ -1,4 +1,4 @@
-package com.awesomewhitelabeledapp
+package com.circular.app
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.awesomewhitelabeledapp"
+    namespace "com.circular.app"
     defaultConfig {
-        applicationId "com.awesomewhitelabeledapp"
+        applicationId "com.circular.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
