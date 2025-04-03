@@ -49,6 +49,8 @@ else
     echo "Warning: Splash.png not found in $BRAND_ASSETS_PATH"
 fi
 
+echo "iOS white labeling process completed!"
+
 echo "White labeling process completed!"
 echo "Please verify the assets in:"
 echo "- iOS: ios/$APP_NAME/Images.xcassets/"
