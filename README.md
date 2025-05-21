@@ -66,3 +66,5 @@ To learn more about React Native, take a look at the following resources:
 
 ./whitelabel.sh "CircularMaterials" "com.circular.materials" "CircularMaterials"
 ./whitelabel.sh "GarbologyGenius" "com.garbologygenius" "GarbologyGenius"
+
+npx react-native run-ios
