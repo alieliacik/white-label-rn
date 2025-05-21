@@ -65,3 +65,4 @@ To learn more about React Native, take a look at the following resources:
 ## Test Script:
 
 ./whitelabel.sh "CircularMaterials" "com.circular.materials" "CircularMaterials"
+./whitelabel.sh "GarbologyGenius" "com.garbologygenius" "GarbologyGenius"
