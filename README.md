@@ -1,86 +1,52 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# White Labeling
 
-# Getting Started
+This project supports white labeling, allowing you to create branded versions of the app with different names, bundle IDs, and assets.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## White Labeling Process
 
-## Step 1: Start Metro
+To create a new white labeled version of the app, follow these steps:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+1. Prepare your brand assets:
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+   - Create a new folder in `brandedAppAssets/` with your brand name
+   - Add the following files to your brand folder:
+     - `Logo.png` - Your app logo
+     - `Splash.png` - Your splash screen image
 
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+2. Run the white labeling script:
 
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+./whitelabel.sh "<AppName>" "<BundleID>" "<BrandAssetsFolder>"
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+For example:
 
 ```sh
-bundle install
+./whitelabel.sh "MyNewApp" "com.mycompany.mynewapp" "CircularMaterials"
 ```
 
-Then, and every time you update your native dependencies, run:
+The script will:
 
-```sh
-bundle exec pod install
-```
+- Rename your React Native app
+- Update iOS pods
+- Copy and configure your brand assets
+- Set up the correct bundle ID
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Required Parameters
 
-```sh
-# Using npm
-npm run ios
+- `<AppName>`: The name of your new app
+- `<BundleID>`: The bundle identifier (e.g., com.company.appname)
+- `<BrandAssetsFolder>`: The name of your brand assets folder in `brandedAppAssets/`
 
-# OR using Yarn
-yarn ios
-```
+### Asset Requirements
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+- Logo: Should be a high-quality PNG file
+- Splash Screen: Should be a high-quality PNG file
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+After white labeling, verify the assets in:
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- iOS: `ios/<AppName>/Images.xcassets/`
+- Android: `android/app/src/main/res/`
 
 # Troubleshooting
 
@@ -95,3 +61,7 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+## Test Script:
+
+./whitelabel.sh "CircularMaterials" "com.circular.materials" "CircularMaterials"

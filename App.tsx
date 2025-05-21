@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   ScrollView,
@@ -15,6 +15,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import BootSplash from 'react-native-bootsplash';
 
 import {
   Colors,
@@ -60,6 +61,17 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await BootSplash.hide({fade: true});
+      console.log('BootSplash has been hidden successfully');
+    });
+  }, []);
 
   /*
    * To keep the template simple and small we're adding padding to prevent view
